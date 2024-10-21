@@ -750,7 +750,7 @@ class DashboardScreen(val token: String) : Screen {
                     modifier = Modifier.padding(start = 6.dp)
                 ) {
                     Text(
-                        text = item.product_name.toString(),
+                        text = if(item.product_name != "") item.product_name.toString() else "-",
                         fontWeight = FontWeight.W400,
                         fontFamily = FontFamily(Font(Res.font.roboto_regular)),
                         fontSize = 14.sp,
@@ -766,7 +766,7 @@ class DashboardScreen(val token: String) : Screen {
                             modifier = Modifier.align(Alignment.CenterVertically).padding(end = 2.dp)
                         )
                         Text(
-                            text = item.sku_external.toString(),
+                            text = if(item.sku_external != "") item.sku_external.toString() else "-",
                             fontWeight = FontWeight.W400,
                             fontFamily = FontFamily(Font(Res.font.roboto_regular)),
                             fontSize = 14.sp,
@@ -779,21 +779,20 @@ class DashboardScreen(val token: String) : Screen {
                             modifier = Modifier.align(Alignment.CenterVertically).padding(end = 2.dp)
                         )
                         Text(
-                            text = item.sku_internal.toString(),
+                            text = if(item.sku_internal != "")  item.sku_internal.toString() else "-",
                             fontWeight = FontWeight.W400,
                             fontFamily = FontFamily(Font(Res.font.roboto_regular)),
                             fontSize = 14.sp,
                             color = grey200,
                             modifier = Modifier.align(Alignment.CenterVertically).padding(end = 8.dp)
                         )
-
                         Image(
                             imageVector = vectorResource(Res.drawable.ic_sku_barcode),
                             contentDescription = "SKU",
                             modifier = Modifier.align(Alignment.CenterVertically).padding(end = 2.dp)
                         )
                         Text(
-                            text = item.sku_barcode.toString(),
+                            text = if(item.sku_barcode != "") item.sku_barcode.toString() else "-",
                             fontWeight = FontWeight.W400,
                             fontFamily = FontFamily(Font(Res.font.roboto_regular)),
                             fontSize = 14.sp,
@@ -804,15 +803,28 @@ class DashboardScreen(val token: String) : Screen {
                 }
             }
             Text(
-                text = item.gpri_company_name.toString(),
+                text = if(item.gpri_company_name != "") item.gpri_company_name.toString() else "-",
+                fontWeight = FontWeight.W400,
+                fontFamily = FontFamily(Font(Res.font.roboto_regular)),
+                fontSize = 14.sp,
+                color = black100,
+                modifier = Modifier.weight(1f)
+
+            )
+            Text(
+                text = if(item.tree_units?.size != 0) item.tree_units?.joinToString(", ").toString() else "-",
+                fontWeight = FontWeight.W400,
+                fontFamily = FontFamily(Font(Res.font.roboto_regular)),
+                fontSize = 14.sp,
+                color = black100,
                 modifier = Modifier.weight(1f)
             )
             Text(
-                text = item.tree_units?.joinToString(", ") ?: "-",
-                modifier = Modifier.weight(1f)
-            )
-            Text(
-                text = item.cnv.toString(),
+                text = if(item.cnv?.size != 0) item.cnv.toString() else "-",
+                fontWeight = FontWeight.W400,
+                fontFamily = FontFamily(Font(Res.font.roboto_regular)),
+                fontSize = 14.sp,
+                color = black100,
                 modifier = Modifier.weight(0.5f)
             )
         }
